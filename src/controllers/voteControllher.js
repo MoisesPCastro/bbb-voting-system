@@ -1,11 +1,10 @@
-const HttpReturnCodes = require('../utils/httpReturnCodes');
-
+import HttpReturnCodes from '../utils/httpReturnCodes.js';
 
 class VoteController {
     async create(_req, res) {
         const httpReturnCodes = new HttpReturnCodes(res);
-        return httpReturnCodes.ok('chegou no controller')
+        return httpReturnCodes.ok('chegou no controller');
     }
 }
 
-module.exports = new VoteController();
+export default new VoteController();

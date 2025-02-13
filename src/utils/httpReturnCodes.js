@@ -114,4 +114,4 @@ class HttpReturnCodes {
     }
 }
 
-module.exports = HttpReturnCodes;
+export default HttpReturnCodes;

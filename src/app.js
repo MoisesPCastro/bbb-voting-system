@@ -7,6 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/votes', voteRoutes);
+app.use('/api', voteRoutes);
 
 export default app;

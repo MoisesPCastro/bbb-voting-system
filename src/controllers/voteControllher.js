@@ -1,9 +1,20 @@
+import VoteService from '../services/voteService.js';
 import HttpReturnCodes from '../utils/httpReturnCodes.js';
 
 class VoteController {
-    async create(_req, res) {
+    async create(req, res) {
         const httpReturnCodes = new HttpReturnCodes(res);
-        return httpReturnCodes.ok('chegou no controller');
+        try {
+            const { candidate } = req.body;
+            if (!candidate) {
+                return httpReturnCodes.badRequest('O campo candidate é obrigatório.');
+            }
+
+            const vote = await VoteService.createVote(candidate);
+            return httpReturnCodes.created({ message: 'Voto registrado com sucesso.', vote });
+        } catch (error) {
+            return httpReturnCodes.internalServerError(error.message);
+        }
     }
 }
 

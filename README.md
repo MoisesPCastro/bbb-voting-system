@@ -35,7 +35,11 @@ Isso garantirá que todas as tabelas serão criadas corretamente no SQLite.
 
 4️⃣ Iniciar o Servidor
 
-npm start
+Produção
+    npm start
+
+Desenvolvimento
+    npm run dev
 
 O servidor será iniciado e rodará na porta 3000 por padrão.
 

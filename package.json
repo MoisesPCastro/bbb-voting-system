@@ -7,7 +7,9 @@
   "start": "node index.js",
   "dev": "nodemon index.js",
   "lint": "eslint .",
-  "lint:fix": "eslint . --fix"
+  "lint:fix": "eslint . --fix",
+  "sequelize": "npx sequelize-cli --config .sequelizerc.cjs",
+  "db:init": "npx sequelize-cli db:migrate --config config/config.json --migrations-path esm-migrations"
 },
   "keywords": [],
   "author": "",
@@ -18,10 +20,13 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "pg": "^8.13.3",
-    "redis": "^4.7.0"
+    "redis": "^4.7.0",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "eslint": "^9.20.1",
-    "globals": "^15.15.0"
+    "globals": "^15.15.0",
+    "sequelize-cli": "^6.6.2"
   }
 }

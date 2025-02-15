@@ -5,23 +5,23 @@ import { sequelize } from '../models/index.js';
 class VoteRepository {
 
     async addCandidate(candidate) {
-        return await Vote.findOrCreate({
-            where: { candidate },
-            defaults: { candidate }
-        });
+        return await Vote.create({ candidate });
     }
 
     async getAllCandidates() {
-        return await Vote.findAll({
-            attributes: ['candidate'],
-            raw: true
+        const candidates = await Vote.findAll({
+            attributes: ['id', 'candidate'],
         });
+
+        const totalCandidates = await Vote.count();
+
+        return { totalCandidates, candidates };
     }
 
-    async getCandidates() {
+    async getCandidates(candidate) {
         return await Vote.findOne({
-            attributes: ['candidate'],
-            raw: true
+            where: { candidate },
+            attributes: ['candidate']
         });
     }
 
@@ -29,8 +29,7 @@ class VoteRepository {
         const transaction = await sequelize.transaction();
 
         try {
-
-            const [stats, created] = await VoteStats.findOne({
+            const [stats, created] = await VoteStats.findOrCreate({
                 where: { candidate },
                 defaults: { totalVotes: 1 },
                 transaction
@@ -42,12 +41,13 @@ class VoteRepository {
             }
 
             await transaction.commit();
-            return candidateExists;
+            return stats;
         } catch (error) {
             await transaction.rollback();
             throw error;
         }
     }
+
 }
 
 export default new VoteRepository();

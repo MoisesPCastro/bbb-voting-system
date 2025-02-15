@@ -10,7 +10,6 @@ class VoteStatsRepository {
         return await VoteStats.findAll({
             attributes: ['candidate', [sequelize.fn('SUM', sequelize.col('totalVotes')), 'totalVotes']],
             group: ['candidate'],
-            raw: true
         });
     }
 
@@ -21,7 +20,6 @@ class VoteStatsRepository {
                 [sequelize.fn('SUM', sequelize.col('totalVotes')), 'totalVotes']
             ],
             group: ['hour'],
-            raw: true
         });
     }
 }

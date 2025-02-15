@@ -3,11 +3,11 @@ import VoteRepository from '../repositories/voteRepository.js';
 class VoteService {
 
     async addCandidate(candidate) {
-        return await VoteCandidateRepository.addCandidate(candidate);
+        return await VoteRepository.addCandidate(candidate);
     }
 
-    async getCandidates() {
-        return await VoteCandidateRepository.getCandidates();
+    async getAllCandidates() {
+        return await VoteRepository.getAllCandidates();
     }
 
     async saveVote(candidate) {
@@ -15,7 +15,9 @@ class VoteService {
         const candidateExists = await VoteRepository.getCandidates(candidate);
 
         if (!candidateExists) {
-            throw new Error(`O candidato '${candidate}' não está na lista de votação.`);
+            const error = new Error(`O nome '${candidate}' não se encontra na lista de votação.`);
+            error.statusCode = 404;
+            throw error;
         }
 
         return await VoteRepository.saveVote(candidate);

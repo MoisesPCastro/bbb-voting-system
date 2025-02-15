@@ -47,8 +47,8 @@ class VoteController {
                 return httpReturnCodes.forbidden("Voto recusado: origem suspeita detectada.");
             }
 
-            const vote = await VoteService.saveVote(candidate);
-            return httpReturnCodes.ok({ message: 'Voto registrado com sucesso.', vote });
+            await VoteService.saveVote(candidate);
+            return httpReturnCodes.ok({ message: 'Voto enviado para processamento.' });
         } catch (error) {
 
             logger.error(`Erro ao registrar voto: ${error.message}`);

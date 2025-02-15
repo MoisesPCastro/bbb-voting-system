@@ -1,0 +1,12 @@
+config:
+  target: "http://localhost:3333"
+  phases:
+    - duration: 10
+      arrivalRate: 1000
+scenarios:
+  - flow:
+      - post:
+          url: "/api/votes"
+          json:
+            candidate: "Maria"
+            recaptchaToken: "fake-token-1708012345678"

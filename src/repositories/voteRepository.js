@@ -44,10 +44,10 @@ class VoteRepository {
             return stats;
         } catch (error) {
             await transaction.rollback();
+            logger.error(`Erro ao salvar voto no banco: ${error.message}`);
             throw error;
         }
     }
-
 }
 
 export default new VoteRepository();

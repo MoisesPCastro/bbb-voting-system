@@ -1,4 +1,5 @@
 import VoteRepository from '../repositories/voteRepository.js';
+import { voteQueue } from '../utils/voteQueue.js';
 
 class VoteService {
 
@@ -20,7 +21,7 @@ class VoteService {
             throw error;
         }
 
-        return await VoteRepository.saveVote(candidate);
+        await voteQueue.add("register-vote", { candidate });
     }
 }
 

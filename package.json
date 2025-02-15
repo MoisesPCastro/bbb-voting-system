@@ -18,10 +18,12 @@
   "description": "",
   "dependencies": {
     "axios": "^1.7.9",
+    "bullmq": "^5.41.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "husky": "^9.1.7",
+    "ioredis": "^5.5.0",
     "pg": "^8.13.3",
     "redis": "^4.7.0",
     "sequelize": "^6.37.5",

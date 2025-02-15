@@ -1,3 +1,4 @@
+import logger from '../utils/logger.js';
 class ReCaptchaController {
 
     async generateToken(_req, res) {
@@ -14,7 +15,7 @@ class ReCaptchaController {
 
             return res.json({ recaptchaToken: token });
         } catch (error) {
-            console.error("Erro ao gerar o token do reCAPTCHA:", error);
+            logger.error(`Erro ao gerar token recaptcha: ${error.message}`);
             return res.status(500).json({ error: "Erro interno ao gerar token do reCAPTCHA." });
         }
     };

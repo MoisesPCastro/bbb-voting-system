@@ -1,5 +1,5 @@
 node_modules/
-.env
+#.env  esta comentado pois preciso que o .env suba pro github, em um caso profissional o env não subiria
 .DS_Store
 *.log
 coverage/

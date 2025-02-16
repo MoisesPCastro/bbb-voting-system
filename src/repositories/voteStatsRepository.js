@@ -3,6 +3,7 @@ import { sequelize } from '../models/index.js';
 
 class VoteStatsRepository {
     async getTotalVotes() {
+        console.log("🔍 Buscando total de votos do banco...");
         return await VoteStats.sum('totalVotes');
     }
 

@@ -18,8 +18,9 @@ class VoteStatsService {
 
             const stats = { totalVotes, votesByCandidate, votesByHour };
 
-            // Salva no Redis com expiração de 10 segundos
-            await redisClient.set(cacheKey, JSON.stringify(stats), 'EX', 10);
+            await redisClient.set(cacheKey, JSON.stringify(stats));
+            await redisClient.expire(cacheKey, 10); // 🔥 Garante que a chave expira após 10 segundos
+
 
             return stats;
         } catch (error) {

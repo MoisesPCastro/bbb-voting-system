@@ -1,7 +1,4 @@
 import Vote from '../models/vote.js';
-import VoteStats from '../models/voteStats.js';
-import { sequelize } from '../models/index.js';
-
 class VoteRepository {
 
     async addCandidate(candidate) {
@@ -23,30 +20,6 @@ class VoteRepository {
             where: { candidate },
             attributes: ['candidate']
         });
-    }
-
-    async saveVote(candidate) {
-        const transaction = await sequelize.transaction();
-
-        try {
-            const [stats, created] = await VoteStats.findOrCreate({
-                where: { candidate },
-                defaults: { totalVotes: 1 },
-                transaction
-            });
-
-            if (!created) {
-                stats.totalVotes += 1;
-                await stats.save({ transaction });
-            }
-
-            await transaction.commit();
-            return stats;
-        } catch (error) {
-            await transaction.rollback();
-            logger.error(`Erro ao salvar voto no banco: ${error.message}`);
-            throw error;
-        }
     }
 }
 

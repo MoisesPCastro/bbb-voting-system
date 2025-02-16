@@ -9,6 +9,6 @@ router.post('/candidates', VoteController.addCandidate); // criar canditato a vo
 router.get('/candidates', VoteController.getAllCandidates); // buscar possiveis candidatos a votação
 router.post('/votes', VoteController.saveVote); // votar em um candidato
 router.get('/stats', voteStatsControllher.getStats) // buscar info votação candidatos
-router.get('/generate-recaptcha', reCaptchaController.generateToken); // Gerar token do recaptha para consumir rota de votação e  verificação se é humano ao votar
+router.get('/generate-recaptcha', reCaptchaController.generateToken); // Gerar token do recaptha para consumir rota de votação e verificação se é humano ao votar
 
 export default router;

@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "sequelize": "npx sequelize-cli --config .sequelizerc.cjs",
-    "db:init": "npx sequelize-cli db:migrate --config config/config.json --migrations-path esm-migrations",
-    "prepare": "husky install"
+    "db:init": "npx sequelize-cli db:migrate --config config/config.json --migrations-path esm-migrations"
   },
   "keywords": [],
   "author": "",

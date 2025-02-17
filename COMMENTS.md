@@ -17,6 +17,17 @@
 
 - Utilizei **Artillery** para simular **1000 requisições/segundo** na API de votação e estatísticas.
 
+## Testes de Integração
+
+Para garantir que todos os endpoints da API funcionem corretamente, foram implementados testes de integração utilizando o `node:test`.
+
+## Como Rodar os Testes de Integração
+
+Os testes podem ser executados com o seguinte comando:
+
+```sh
+npm run test
+```
 ## Winston (Logging de Erros)
 
 - O projeto utiliza a biblioteca **Winston** para capturar e armazenar logs de erros.

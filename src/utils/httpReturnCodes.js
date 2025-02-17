@@ -19,99 +19,70 @@ class HttpReturnCodes {
         };
     }
 
-    ok(dadosRetorno) {
-        return this.response.status(this.statusCodes.OK).send(dadosRetorno);
+    sendResponse(statusCode, data = null, parse = false) {
+        let responseData = data;
+        if (data && typeof data !== 'object' && !parse) {
+            responseData = { message: JSON.stringify(data) };
+        }
+        return this.response.status(statusCode).send(responseData);
     }
 
-    created(dadosRetorno) {
-        return this.response
-            .status(this.statusCodes.CREATED)
-            .send(dadosRetorno);
+    ok(data) {
+        return this.sendResponse(this.statusCodes.OK, data);
     }
 
-    accepted(dadosRetorno) {
-        return this.response
-            .status(this.statusCodes.ACCEPTED)
-            .send(dadosRetorno);
+    created(data) {
+        return this.sendResponse(this.statusCodes.CREATED, data);
+    }
+
+    accepted(data) {
+        return this.sendResponse(this.statusCodes.ACCEPTED, data);
     }
 
     noContent() {
-        return this.response.status(this.statusCodes.NO_CONTENT).send();
+        return this.sendResponse(this.statusCodes.NO_CONTENT);
     }
 
-    badRequest(mensagemRetorno) {
-        return this.response
-            .status(this.statusCodes.BAD_REQUEST)
-            .send(mensagemRetorno);
+    badRequest(message) {
+        return this.sendResponse(this.statusCodes.BAD_REQUEST, message);
     }
 
-    unauthorized(mensagemRetorno) {
-        return this.response
-            .status(this.statusCodes.UNAUTHORIZED)
-            .send(mensagemRetorno);
+    unauthorized(message) {
+        return this.sendResponse(this.statusCodes.UNAUTHORIZED, message);
     }
 
-    forbidden(mensagemRetorno) {
-        return this.response
-            .status(this.statusCodes.FORBIDDEN)
-            .send(mensagemRetorno);
+    forbidden(message) {
+        return this.sendResponse(this.statusCodes.FORBIDDEN, message);
     }
 
-    notFound(mensagemRetorno, parse = false) {
-        const mensagem = parse ? mensagemRetorno : { mensage: JSON.stringify(mensagemRetorno) };
-
-        return this.response
-            .status(this.statusCodes.NOT_FOUND)
-            .send(mensagem);
+    notFound(message, parse = false) {
+        return this.sendResponse(this.statusCodes.NOT_FOUND, message, parse);
     }
 
-    notAcceptable(mensagemRetorno, parse = false) {
-        const mensagem = parse ? mensagemRetorno : { mensage: JSON.stringify(mensagemRetorno) };
-
-        return this.response
-            .status(this.statusCodes.NOT_ACCEPTABLE)
-            .send(mensagem);
+    notAcceptable(message, parse = false) {
+        return this.sendResponse(this.statusCodes.NOT_ACCEPTABLE, message, parse);
     }
 
-    preconditionFailed(mensagemRetorno, parse = false) {
-        const mensagem = parse ? mensagemRetorno : { mensage: JSON.stringify(mensagemRetorno) };
-
-        return this.response
-            .status(this.statusCodes.PRECONDITION_FAILED)
-            .send(mensagem);
+    preconditionFailed(message, parse = false) {
+        return this.sendResponse(this.statusCodes.PRECONDITION_FAILED, message, parse);
     }
 
-    unprocessableEntity(mensagemRetorno, parse = false) {
-        const mensagem = parse ? mensagemRetorno : { mensage: JSON.stringify(mensagemRetorno) };
-
-        return this.response
-            .status(this.statusCodes.UNPROCESSABLE_ENTITY)
-            .send(mensagem);
+    unprocessableEntity(message, parse = false) {
+        return this.sendResponse(this.statusCodes.UNPROCESSABLE_ENTITY, message, parse);
     }
 
-    internalServerError(mensagemRetorno = 'Internal server error.', parse = false) {
-        const mensagem = parse ? mensagemRetorno : { mensage: JSON.stringify(mensagemRetorno) };
-
-        return this.response
-            .status(this.statusCodes.INTERNAL_SERVER_ERROR)
-            .send(mensagem);
+    internalServerError(message = 'Internal server error.', parse = false) {
+        return this.sendResponse(this.statusCodes.INTERNAL_SERVER_ERROR, message, parse);
     }
 
-    serverUnavailable(mensagemRetorno, parse = false) {
-        const mensagem = parse ? mensagemRetorno : { mensage: JSON.stringify(mensagemRetorno) };
-
-        return this.response
-            .status(this.statusCodes.SERVICE_UNAVAILABLE)
-            .send(mensagem);
+    serverUnavailable(message, parse = false) {
+        return this.sendResponse(this.statusCodes.SERVICE_UNAVAILABLE, message, parse);
     }
 
-    conflict(mensagemRetorno, parse = false) {
-        const mensagem = parse ? mensagemRetorno : { mensage: JSON.stringify(mensagemRetorno) };
-
-        return this.response
-            .status(this.statusCodes.CONFLICT)
-            .send(mensagem);
+    conflict(message, parse = false) {
+        return this.sendResponse(this.statusCodes.CONFLICT, message, parse);
     }
 }
 
 export default HttpReturnCodes;
+
